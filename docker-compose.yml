@@ -1,0 +1,4 @@
+services:
+  provider-build:
+    build: .
+    command: ["-help"]

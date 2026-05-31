@@ -1,0 +1,41 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "codex/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+          terraform_wrapper: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Format check
+        run: make fmt-check
+      - name: Build
+        run: make build
+      - name: Tests
+        run: make test
+      - name: Acceptance tests with fake API
+        run: make test-acceptance
+      - name: Benchmarks
+        run: make bench
+      - name: OpenAPI lint
+        run: make openapi-lint
+      - name: Security scan
+        run: make security
+      - name: Docker build
+        run: make docker-build
