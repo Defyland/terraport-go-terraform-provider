@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.bankport.example.test/events/bankport-resource-audit.v1.json",
+  "title": "BankPortResourceAuditEventV1",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "schema_version",
+    "occurred_at",
+    "producer",
+    "correlation_id",
+    "resource_id"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "bankport.partner_app.created",
+        "bankport.partner_app.updated",
+        "bankport.partner_app.deleted",
+        "bankport.webhook_endpoint.created",
+        "bankport.rate_limit_policy.updated",
+        "bankport.sandbox_environment.created"
+      ]
+    },
+    "schema_version": { "const": "1" },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "producer": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "resource_id": { "type": "string" },
+    "resource_type": { "type": "string" },
+    "actor_type": { "type": "string" }
+  },
+  "additionalProperties": false
+}

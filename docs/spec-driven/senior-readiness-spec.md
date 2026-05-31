@@ -57,15 +57,15 @@ The repository must include unit/client tests, fake-server acceptance tests, imp
 | Criterion | Evidence | Status | Notes |
 | --- | --- | --- | --- |
 | Product problem is explicit | README.md, docs/product/problem.md | Done | Names partner onboarding and Terraform workflow. |
-| Provider lifecycle is implemented | internal/provider/*resource*.go | Planned | Implemented after bootstrap spec. |
-| Fake API client exists | internal/bankport/client.go | Planned | Must include retry, timeout, and sanitized errors. |
-| Acceptance tests cover lifecycle and failures | internal/provider/*_test.go | Planned | Must run against `httptest.Server`. |
-| Sensitive values are protected in schema | internal/provider/*resource*.go, docs/security/secrets.md | Planned | Must also document state exposure risk. |
-| Drift detection is verified | internal/provider/*_test.go | Planned | Remote mutation should produce non-empty Terraform plan. |
-| 100-resource performance path exists | internal/provider/performance_test.go, benchmarks/baseline.md | Planned | Must record measured command and output summary. |
+| Provider lifecycle is implemented | internal/provider/*resource*.go | Done | CRUD and import implemented for four resources. |
+| Fake API client exists | internal/bankport/client.go | Done | Includes retry, timeout, metrics, and sanitized errors. |
+| Acceptance tests cover lifecycle and failures | internal/provider/provider_acceptance_test.go | Done | Runs against `httptest.Server` through Terraform Plugin Testing. |
+| Sensitive values are protected in schema | internal/provider/*resource*.go, docs/security/secrets.md | Done | Sensitive state leakage is documented as residual risk. |
+| Drift detection is verified | internal/provider/provider_acceptance_test.go | Done | Remote mutation produces non-empty Terraform plan. |
+| 100-resource performance path exists | internal/provider/provider_acceptance_test.go, benchmarks/baseline.md | Done | `TestAccHundredPartnerAppsApply` and native benchmarks recorded. |
 | CDKTF is not core | docs/adr/0002-do-not-use-cdktf-as-core.md | Done | CDKTF retained only as rejected alternative. |
-| Runbooks cover expected incidents | docs/runbooks/*.md | Planned | Auth, drift, import, timeout, rate limit, state leak. |
-| CI validates code and docs | .github/workflows/ci.yml | Planned | Must include fmt, test, build, security, OpenAPI validation. |
+| Runbooks cover expected incidents | docs/runbooks/*.md | Done | Auth, drift, import, timeout, rate limit, state leak. |
+| CI validates code and docs | .github/workflows/ci.yml | Done | Includes fmt, test, build, acceptance, security, OpenAPI, benchmark, Docker build. |
 
 ## Out of Scope
 
