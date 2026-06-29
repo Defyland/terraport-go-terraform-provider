@@ -97,6 +97,17 @@ make bench
 ```
 
 The acceptance tests use a local fake server and do not require real BankPort credentials.
+If Terraform is not discoverable on your `PATH`, point `make` at a concrete CLI
+binary with `TERRAFORM=/absolute/path/to/terraform`.
+
+## 17.1 How to evaluate this repository in five minutes
+
+Run the reviewer path that exercises the fake API lifecycle, acceptance flow,
+OpenAPI lint, and security scan:
+
+```sh
+make review
+```
 
 ## 18. Failure scenarios
 
