@@ -119,3 +119,11 @@ Documented runbooks cover provider authentication failure, remote drift, importi
 - Add plan modifiers for more precise replacement behavior on immutable remote fields.
 - Add structured debug logging with explicit redaction hooks.
 - Publish provider docs generated from schema when the public registry layout is introduced.
+
+## 20. License
+
+This repository is published under the MIT License. See
+[LICENSE.txt](LICENSE.txt).
+
+That keeps the provider lifecycle patterns, fake API acceptance flow, and
+operator guidance reusable for study and internal tooling.
